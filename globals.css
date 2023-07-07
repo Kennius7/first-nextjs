@@ -31,6 +31,18 @@ li {
     font-weight: bold;
 }
 
+button {
+    background-color: rgb(53, 53, 211);
+    color: white;
+    padding: 10px 20px;
+    transition-duration: .5s;
+    border-radius: 6px;
+}
+
+button:hover {
+    background-color: rgb(218, 101, 33);
+}
+
 .bgImg1 {
     background: url("./public/img/av1.jpg");
     background-size: cover;

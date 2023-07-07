@@ -17,13 +17,20 @@ const router = useRouter();
             </div>
             <ul className="flex justify-start items-center w-[60%]">
                 <li>
-                    <Link href="/" className={router.pathname === "/" ? "text-blue-800" : ""}>Home</Link>
+                    <Link href="/" 
+                        className={router.pathname === "/" ? "text-blue-800" : ""}>Home</Link>
                 </li>
                 <li>
-                    <Link href="/about" className={router.pathname === "/about" ? "text-blue-800" : ""}>About Us</Link>
+                    <Link href="/about" 
+                        className={router.pathname === "/about" ? "text-blue-800" : ""}>About Us</Link>
                 </li>
                 <li>
-                    <Link href="/blog" className={router.pathname === "/blog" ? "text-blue-800" : ""}>Blog</Link>
+                    <Link href="/blog" 
+                        className={router.pathname === "/blog" ? "text-blue-800" : ""}>Blog</Link>
+                </li>
+                <li>
+                    <Link href="/forecast" 
+                        className={router.pathname === "/forecast" ? "text-blue-800" : ""}>Forecast</Link>
                 </li>
             </ul>
         </nav>

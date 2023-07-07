@@ -9,15 +9,15 @@ export default function Post ({post}) {
         <>
             <div>
                 <Link href="/blog">
-                    <small>
+                    <small className="font-bold">
                         &laquo;Back to Blog Section
                     </small>
                 </Link>
             </div>
-            <div>{post.title}</div>
-            <div>{post.content}</div>
-            <button className="" onClick={() => router.push("/blog")}>
-                Click to Programmatically navigate or redirect
+            <div className="text-[22px] font-poppins font-bold">{post.title}</div>
+            <div className="italic text-[17px] w-[50%]">{post.content}</div>
+            <button className="mt-10 mb-6" onClick={() => router.push("/blog")}>
+                Click to redirect back to Blog Section
             </button>
         </>
     )
@@ -28,11 +28,9 @@ export async function getStaticPaths() {
     const response = await fetch("https://learnwebcode.github.io/json-example/posts.json");
     const data = await response.json();
 
-    console.log(data.posts.slug);
+    const thePaths = data.posts.map((pet) => { return { params: { slug: pet.slug } } });
 
-    const thePaths = data.posts.map((pet) => { return { params: { slug: pet.slug } } })
-    console.log(thePaths);
-    return { path: [...thePaths], fallback: false };
+    return { paths: thePaths, fallback: false };
 }
 
 export async function getStaticProps(context) {
@@ -40,6 +38,6 @@ export async function getStaticProps(context) {
     const data = await response.json();
     const thePosts = data.posts.filter((post) => post.slug === context.params.slug)[0]
 
-    return{ props: { posts: thePosts, title: thePosts.title } };
+    return{ props: { post: thePosts, title: thePosts.title } };
 }
 
