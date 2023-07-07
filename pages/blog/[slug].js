@@ -28,15 +28,17 @@ export async function getStaticPaths() {
     const response = await fetch("https://learnwebcode.github.io/json-example/posts.json");
     const data = await response.json();
 
-    const thePaths = data.posts.map(pet => { return { params: { slug: pet.slug } } });
+    console.log(data.posts.slug);
 
-    return { path: thePaths, fallback: false };
+    const thePaths = data.posts.map((pet) => { return { params: { slug: pet.slug } } })
+    console.log(thePaths);
+    return { path: [...thePaths], fallback: false };
 }
 
 export async function getStaticProps(context) {
     const response = await fetch("https://learnwebcode.github.io/json-example/posts.json");
     const data = await response.json();
-    const thePosts = data.posts.filter((post) => { post.slug === context.params })
+    const thePosts = data.posts.filter((post) => post.slug === context.params.slug)[0]
 
     return{ props: { posts: thePosts, title: thePosts.title } };
 }
